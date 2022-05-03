@@ -1,7 +1,5 @@
-try:
-    from configparser import ConfigParser
-except ImportError:
-    from ConfigParser import ConfigParser  # ver. < 3.0
+from configparser import ConfigParser
+# from ConfigParser import ConfigParser  # ver. < 3.0
 
 # instantiate
 config = ConfigParser()
