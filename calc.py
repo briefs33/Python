@@ -21,29 +21,37 @@ def button_click(number):
 def entry_clear():
     entry.delete(0, END)
 
-def button_add():
-    memory.append(int(entry.get()))
-    memory.append("+")
+def button_operation(operation):
+    if entry.get() == "Delenie nulou":
+        return entry.insert(END, 0)
+    if settings[0] == True:
+        settings[0] = False
+    memory.append(float(entry.get()))
+    memory.append(operation)
     entry_clear()
 
 def button_equal():
-    memory.append(int(entry.get()))
+    if entry.get() == "Delenie nulou":
+        return entry.insert(END, 0)
+    memory.append(float(entry.get()))
     vysledok = 0
     while len(memory) > 0:
         pamat = memory.pop()
         if type(pamat) == str:
-            print(pamat)
             if pamat == "+":
-                pamat = memory.pop()
-                print(pamat)
-                vysledok += pamat
+                vysledok = memory.pop() + vysledok
             if pamat == "-":
-                vysledok -= memory.pop()
+                vysledok = memory.pop() - vysledok
             if pamat == "*":
-                vysledok *= memory.pop()
+                vysledok = memory.pop() * vysledok
             if pamat == "/":
-                vysledok /= memory.pop()
-        elif type(pamat) == int:
+                if vysledok == 0:
+                    entry_clear()
+                    entry.insert(END, "Delenie nulou")
+                    settings[0] = True
+                    return
+                vysledok = memory.pop() / vysledok
+        elif type(pamat) == (float or int):
             vysledok = pamat
         else:
             print("Neznáma operácia")
@@ -63,10 +71,11 @@ buttons = {
     8           : ["8", 20, 10, lambda: button_click(8), 2, 1, None, None],
     9           : ["9", 20, 10, lambda: button_click(9), 2, 2, None, None],
     0           : ["0", 47, 10, lambda: button_click(0), 5, 0, 2, None],
-    "plus"      : ["+", 20, 10, button_add, 1, 3, None, None],
-    "minus"     : ["-", 22, 10, button_click, 1, 2, None, None],
-    "krat"      : ["*", 20, 10, button_click, 1, 1, None, None],
-    "deleno"    : ["/", 20, 10, button_click, 1, 0, None, None],
+    "ciarka"    : [".", 20, 10, lambda: entry.insert(END, "."), 5, 2, None, None],
+    "plus"      : ["+", 20, 10, lambda: button_operation("+"), 1, 3, None, None],
+    "minus"     : ["-", 22, 10, lambda: button_operation("-"), 1, 2, None, None],
+    "krat"      : ["*", 20, 10, lambda: button_operation("*"), 1, 1, None, None],
+    "deleno"    : ["/", 20, 10, lambda: button_operation("/"), 1, 0, None, None],
     "rovna_sa"  : ["=", 20, 32, button_equal, 4, 3, None, 2],
     "clear"     : ["MC", 20, 32, entry_clear, 2, 3, None, 2]}
 
