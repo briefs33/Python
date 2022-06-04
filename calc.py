@@ -71,10 +71,10 @@ buttons = {
     9           : ["9", 20, 10, lambda: button_click(9), 2, 2, None, None],
     0           : ["0", 47, 10, lambda: button_click(0), 5, 0, 2, None],
     "ciarka"    : [".", 20, 10, lambda: entry.insert(END, "."), 5, 2, None, None],
-    "plus"      : ["+", 20, 10, lambda: button_operation("+"), 1, 3, None, None],
-    "minus"     : ["-", 22, 10, lambda: button_operation("-"), 1, 2, None, None],
-    "krat"      : ["*", 20, 10, lambda: button_operation("*"), 1, 1, None, None],
-    "deleno"    : ["/", 20, 10, lambda: button_operation("/"), 1, 0, None, None],
+    "add"       : ["+", 20, 10, lambda: button_operation("+"), 1, 3, None, None],
+    "subtract"  : ["-", 22, 10, lambda: button_operation("-"), 1, 2, None, None],
+    "multiply"  : ["*", 20, 10, lambda: button_operation("*"), 1, 1, None, None],
+    "divide"    : ["/", 20, 10, lambda: button_operation("/"), 1, 0, None, None],
     "rovna_sa"  : ["=", 20, 32, button_equal, 4, 3, None, 2],
     "clear"     : ["MC", 20, 32, entry_clear, 2, 3, None, 2]}
 
