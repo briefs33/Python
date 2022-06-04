@@ -1,6 +1,5 @@
 from tkinter import *
 from tkinter import ttk
-from typing import Type
 
 root = Tk()
 root.title("Kalkulačka")
@@ -80,8 +79,10 @@ buttons = {
     "clear"     : ["MC", 20, 32, entry_clear, 2, 3, None, 2]}
 
 for i in buttons:
-    Button(
-        root, text = buttons[i][0], padx = buttons[i][1], pady = buttons[i][2], command = buttons[i][3]
+    ttk.Button(
+        root, text = buttons[i][0], command = buttons[i][3]
+    # Button(
+    #     root, text = buttons[i][0], padx = buttons[i][1], pady = buttons[i][2], command = buttons[i][3]
     ).grid(
         row = buttons[i][4], column = buttons[i][5], columnspan = buttons[i][6], rowspan = buttons[i][7]
     )
