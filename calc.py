@@ -75,7 +75,7 @@ buttons = {
     "subtract"  : ["-", 22, 10, lambda: button_operation("-"), 1, 2, None, None],
     "multiply"  : ["*", 20, 10, lambda: button_operation("*"), 1, 1, None, None],
     "divide"    : ["/", 20, 10, lambda: button_operation("/"), 1, 0, None, None],
-    "rovna_sa"  : ["=", 20, 32, button_equal, 4, 3, None, 2],
+    "equal"     : ["=", 20, 32, button_equal, 4, 3, None, 2],
     "clear"     : ["MC", 20, 32, entry_clear, 2, 3, None, 2]}
 
 for i in buttons:
