@@ -9,27 +9,34 @@ entry = Entry(root, width = 35)
 entry.grid(row = 0, column = 0, columnspan = 4, padx = 5, pady = 5)
 
 memory = []
+settings = [False]
 
 def button_click(number):
-    # entry.delete(0, END)
+    if settings[0] == True:
+        memory.clear()
+        entry_clear()
+        settings[0] = False
     entry.insert(END, number)
 
 def entry_clear():
     entry.delete(0, END)
 
 def button_add():
-    memory.append(entry.get())
+    memory.append(int(entry.get()))
     memory.append("+")
     entry_clear()
 
 def button_equal():
-    memory.append(entry.get())
+    memory.append(int(entry.get()))
     vysledok = 0
     while len(memory) > 0:
         pamat = memory.pop()
         if type(pamat) == str:
+            print(pamat)
             if pamat == "+":
-                vysledok += memory.pop()
+                pamat = memory.pop()
+                print(pamat)
+                vysledok += pamat
             if pamat == "-":
                 vysledok -= memory.pop()
             if pamat == "*":
@@ -41,6 +48,8 @@ def button_equal():
         else:
             print("Neznáma operácia")
     entry_clear()
+    entry.insert(END, vysledok)
+    settings[0] = True
 
 
 buttons = {
