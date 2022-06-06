@@ -11,8 +11,11 @@ def pridat():
 
     zaznamLabel.grid(row = 0, column = 0)
     zaznamInput.grid(row = 0, column = 1)
-    textBox.insert(0, zaznamInput.get() + '\n')
-    zatvoritButton = ttk.Button(window_pridat, text = "Zapísať", command = window_pridat.destroy)
+    
+    zatvoritButton = ttk.Button(window_pridat, text = "Zapísať", command = lambda: (
+        textBox.insert(0, zaznamInput.get() + '\n'),
+        window_pridat.destroy())
+    )
     zatvoritButton.grid(row = 5, column = 1)
 
 
