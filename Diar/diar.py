@@ -5,6 +5,8 @@ import tkinter.ttk as ttk
 
 
 def pridat():
+    """ okno pre formulár pre pridanie zápisu """
+    # pridať selekt/focus pre zadanie textu a možnosť entrovania (Zapísať)
     window_pridat = tk.Toplevel()
     zaznamLabel = ttk.Label(window_pridat, text = "Záznam:")
     zaznamInput = ttk.Entry(window_pridat)
@@ -14,7 +16,7 @@ def pridat():
     
     zatvoritButton = ttk.Button(window_pridat, text = "Zapísať", command = lambda: (
         textBox.insert(0, zaznamInput.get() + '\n'),
-        window_pridat.destroy())
+        window_pridat.destroy()) # prečo treba zátvorky?
     )
     zatvoritButton.grid(row = 5, column = 1)
 
