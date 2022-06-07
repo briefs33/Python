@@ -60,15 +60,23 @@ class JSON():
 
 
 
-# class Application(tk.Tk):
-#     def __init__(self):
-#         super().__init__(self)
-#         self.title('Diár')
-#         self.objekt_json = JSON()
-#         self.grid()
-#         self.createWidgets()
+class Root(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        self.title('Diár')
+        # self.objekt_json = JSON()
+        self.grid()
+        self.window_root()
 
-#     def createWidgets(self):
+    def window_root(self):
+        self.textBox = tk.Listbox(self, width = 50)
+        self.textBox.grid(row = 4, columnspan = 4)
+
+        self.pridatButton = ttk.Button(self, text = "Pridať", command = lambda: Pridat())
+        self.pridatButton.grid(row = 5, column = 1)
+        self.upravitButton = ttk.Button(self, text = "Upraviť", command = lambda: Upravit())
+        self.upravitButton.grid(row = 5, column = 3)
+
 #         # self.splneneLabel = tk.Label(self, text = "Splnené:").grid()
 #         self.splneneCheckbutton = ttk.Checkbutton(self, text = "Splnené")#.grid(row = 2, column = 1)
 #         self.windowBox = tk.Message(self, width = 240, text = f'{"Záznam:":25}{"Dátum:":15}{"Stav:"}')#.grid(row = 3, columnspan = 2)
@@ -102,76 +110,91 @@ class JSON():
 #         self.pridatButton.grid(row = 1, column = 2)
 #         self.upravitButton.grid(row = 1, column = 3)
 
+    def vypis(self):
+        # subor_json = self.objekt_json.reading()
+        # for z in subor_json:
+        #     # self.textBox.insert(f'1.0',f'{z["zaznam"]:25}{z["den"]:15}{z["splnene"]}\n')
+        #     # text_string = f'{z["zaznam"]:25}{z["den"]:15}{z["splnene"]}\n'
+        #     # text_string = z["zaznam"], z["den"], z["splnene"]
+        #     text_string = str(z["zaznam"]) + '\t'*3 + str(z["den"]) + '\t'*2 + str(z["splnene"]) + '\n' # TOTO potrebuje ďalšie vysvetlenie
+        #     self.textBox.insert('1.0', text_string)
+        pass
 
-def pridat():
-    """ okno pre formulár pre pridanie zápisu """
-        # zaznam = self.zaznamInput
-        # den = self.datumInput
-        # self.objekt_json.add_line(zaznam, den)
-        # # self.objekt_json._write()
+
+class Pridat(tk.Toplevel):
+    def __init__(self):
+        super().__init__()
+        self.title('Pridanie záznamu')
+        # self.objekt_json = JSON()
+        self.grid()
+        self.window_pridat()
+
+    def window_pridat(self):
+        """ okno pre formulár pre pridanie zápisu """
+            # zaznam = self.zaznamInput
+            # den = self.datumInput
+            # self.objekt_json.add_line(zaznam, den)
+            # # self.objekt_json._write()
+            # self.vypis()
+        # pridať selekt/focus pre zadanie textu a možnosť entrovania (Zapísať)
+        # window_pridat = tk.Toplevel()
+        zaznamLabel = ttk.Label(self, text = "Záznam:")
+        zaznamInput = ttk.Entry(self, name = "zaznamInput")
+        datumLabel = ttk.Label(self, text = "Dátum:")
+        datumInput = ttk.Entry(self, name = "datumInput")
+
+        zaznamLabel.grid(row = 0, column = 0)
+        zaznamInput.grid(row = 0, column = 1)
+        datumLabel.grid(row = 1, column = 0)
+        datumInput.grid(row = 1, column = 1)
+        
+        zatvoritButton = ttk.Button(self, text = "Zapísať", command = lambda: (
+            root.textBox.insert(0, zaznamInput.get() + datumInput.get() + "False" + '\n'),
+            self.destroy()) # prečo treba zátvorky?
+        )
+        zatvoritButton.grid(row = 5, column = 1)
+
+
+class Upravit(tk.Toplevel):
+    def __init__(self):
+        super().__init__()
+        self.title('Upravenie záznamu')
+        # self.objekt_json = JSON()
+        self.grid()
+        self.window_upravit()
+
+    def window_upravit(self):
+        # zaznam, co ,data = None, None, None
+        # self.objekt_json.update_line(zaznam, co, data)
         # self.vypis()
-    # pridať selekt/focus pre zadanie textu a možnosť entrovania (Zapísať)
-    window_pridat = tk.Toplevel()
-    zaznamLabel = ttk.Label(window_pridat, text = "Záznam:")
-    zaznamInput = ttk.Entry(window_pridat)
-    datumLabel = ttk.Label(window_pridat, text = "Dátum:")
-    datumInput = ttk.Entry(window_pridat, name = "datumInput")
-
-    zaznamLabel.grid(row = 0, column = 0)
-    zaznamInput.grid(row = 0, column = 1)
-    datumLabel.grid(row = 1, column = 0)
-    datumInput.grid(row = 1, column = 1)
-    
-    zatvoritButton = ttk.Button(window_pridat, text = "Zapísať", command = lambda: (
-        textBox.insert(0, zaznamInput.get() + datumInput.get() + "False" + '\n'),
-        window_pridat.destroy()) # prečo treba zátvorky?
-    )
-    zatvoritButton.grid(row = 5, column = 1)
-
-def upravit():
-    # zaznam, co ,data = None, None, None
-    # self.objekt_json.update_line(zaznam, co, data)
-    # self.vypis()
-    pass
-
-def vypis(self):
-    # subor_json = self.objekt_json.reading()
-    # for z in subor_json:
-    #     # self.textBox.insert(f'1.0',f'{z["zaznam"]:25}{z["den"]:15}{z["splnene"]}\n')
-    #     # text_string = f'{z["zaznam"]:25}{z["den"]:15}{z["splnene"]}\n'
-    #     # text_string = z["zaznam"], z["den"], z["splnene"]
-    #     text_string = str(z["zaznam"]) + '\t'*3 + str(z["den"]) + '\t'*2 + str(z["splnene"]) + '\n' # TOTO potrebuje ďalšie vysvetlenie
-    #     self.textBox.insert('1.0', text_string)
-    pass
-
-
-root = tk.Tk()
-root.title('Diár')
-root.grid()
+        pass
 
 
 
 
-textBox = tk.Listbox(root, width = 50)
-textBox.grid(row = 4, columnspan = 4)
 
-pridatButton = ttk.Button(root, text = "Pridať", command = lambda: pridat())
-pridatButton.grid(row = 5, column = 1)
-upravitButton = ttk.Button(root, text = "Upraviť", command = lambda: upravit())
+
+
+root = Root()
 
 
 
 
-objekt_json = JSON()
-objekt_json.reading()
+
+
+
+
+
+# objekt_json = JSON()
+# objekt_json.reading()
 
 # objekt_json.update_line("druhy", "zaznam","upraveny_druhy_zaznam")
 # objekt_json.update_line("upraveny_druhy_zaznam", "den", "1.6.2022")
 # objekt_json.update_line("skusobny", "splnene", True)
 
-objekt_json.add_line("treti", "24.3.2018")
+# objekt_json.add_line("treti", "24.3.2018")
 
-objekt_json.write()
+# objekt_json.write()
 
 # objekt_json.add_new_line()
 # objekt_json.sorting("den", True)
