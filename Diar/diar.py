@@ -7,7 +7,7 @@ import tkinter.ttk as ttk
 class JSON():
     def __init__(self):
         try:
-            self.subor_json = json.loads(open("diar.json", "r").read())
+            self.subor_json = json.loads(open("Diar/diar.json", "r").read())
         except:
             self.subor_json = []
 
@@ -41,11 +41,11 @@ class JSON():
             if z["zaznam"] == zaznam: # upraviť na 0 + 1
                 z[co] = data
 
-    def _write(self):
+    def write(self):
         # print(self.subor_json)
         # export = sorted(self.subor_json, key = itemgetter("den"), reverse = False)
         # print(export)
-        subor = open("diar.json", "w")
+        subor = open("Diar/diar.json", "w")
         # subor.write(json.dumps(export, indent = 4))
         # subor.write(json.dumps(self.subor_json, indent = 4))
         subor.write(json.dumps(self.subor_json, indent = 4))
@@ -162,16 +162,16 @@ upravitButton = ttk.Button(root, text = "Upraviť", command = lambda: upravit())
 
 
 
-# objekt_json = JSON()
-# objekt_json.reading()
+objekt_json = JSON()
+objekt_json.reading()
 
 # objekt_json.update_line("druhy", "zaznam","upraveny_druhy_zaznam")
 # objekt_json.update_line("upraveny_druhy_zaznam", "den", "1.6.2022")
 # objekt_json.update_line("skusobny", "splnene", True)
 
-# objekt_json.add_line("treti", "24.3.2018")
+objekt_json.add_line("treti", "24.3.2018")
 
-# objekt_json.write()
+objekt_json.write()
 
 # objekt_json.add_new_line()
 # objekt_json.sorting("den", True)
