@@ -12,15 +12,23 @@ class JSON():
             self.subor_json = []
 
     def reading(self):
-        print(f'{"Záznam:":25}{"Dátum:":15}{"Stav:"}')
+        # print(f'{"Záznam:":25}{"Dátum:":15}{"Stav:"}')
         # subor_json = ''
-        # string = ''
-        for z in self.subor_json:
-            print(f'{z["zaznam"]:25}{z["den"]:15}{z["splnene"]}')
-            # string += f'{(z["zaznam"]):25}{(z["den"]):15}{z["splnene"]}\n'
-        print()
-        print(self.subor_json)
+        # # string = ''
+        # for z in self.subor_json:
+        #     print(f'{z["zaznam"]:25}{z["den"]:15}{z["splnene"]}')
+        #     # string += f'{(z["zaznam"]):25}{(z["den"]):15}{z["splnene"]}\n'
+        # print()
+        # print(self.subor_json)
         # return self.subor_json
+
+        text_string = ''
+        for z in self.subor_json:
+            # self.textBox.insert(f'1.0',f'{z["zaznam"]:25}{z["den"]:15}{z["splnene"]}\n')
+            text_string = f'{z["zaznam"]:25}{z["den"]:15}{z["splnene"]}\n'
+            # text_string = z["zaznam"], z["den"], z["splnene"]
+            # text_string = str(z["zaznam"]) + '\t'*3 + str(z["den"]) + '\t'*2 + str(z["splnene"]) + '\n' # TOTO potrebuje ďalšie vysvetlenie
+        root.textBox.insert(0, text_string)
 
     def add_line(self, zaznam, den):
         data = {"zaznam": zaznam, "den": den, "splnene": False}
@@ -64,7 +72,7 @@ class Root(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title('Diár')
-        # self.objekt_json = JSON()
+        self.objekt_json = JSON()
         self.grid()
         self.window_root()
 
@@ -110,22 +118,12 @@ class Root(tk.Tk):
 #         self.pridatButton.grid(row = 1, column = 2)
 #         self.upravitButton.grid(row = 1, column = 3)
 
-    def vypis(self):
-        # subor_json = self.objekt_json.reading()
-        # for z in subor_json:
-        #     # self.textBox.insert(f'1.0',f'{z["zaznam"]:25}{z["den"]:15}{z["splnene"]}\n')
-        #     # text_string = f'{z["zaznam"]:25}{z["den"]:15}{z["splnene"]}\n'
-        #     # text_string = z["zaznam"], z["den"], z["splnene"]
-        #     text_string = str(z["zaznam"]) + '\t'*3 + str(z["den"]) + '\t'*2 + str(z["splnene"]) + '\n' # TOTO potrebuje ďalšie vysvetlenie
-        #     self.textBox.insert('1.0', text_string)
-        pass
 
 
 class Pridat(tk.Toplevel):
     def __init__(self):
         super().__init__()
         self.title('Pridanie záznamu')
-        # self.objekt_json = JSON()
         self.grid()
         self.window_pridat()
 
@@ -159,7 +157,6 @@ class Upravit(tk.Toplevel):
     def __init__(self):
         super().__init__()
         self.title('Upravenie záznamu')
-        # self.objekt_json = JSON()
         self.grid()
         self.window_upravit()
 
@@ -176,7 +173,7 @@ class Upravit(tk.Toplevel):
 
 
 root = Root()
-
+root.objekt_json.reading()
 
 
 
