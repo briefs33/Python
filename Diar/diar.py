@@ -22,6 +22,7 @@ class JSON():
         # print(self.subor_json)
         # return self.subor_json
 
+        # root.textBox.destroy?
         text_string = ''
         for z in self.subor_json:
             # self.textBox.insert(f'1.0',f'{z["zaznam"]:25}{z["den"]:15}{z["splnene"]}\n')
@@ -55,15 +56,8 @@ class JSON():
         # print(export)
         subor = open("Diar/diar.json", "w")
         # subor.write(json.dumps(export, indent = 4))
-        # subor.write(json.dumps(self.subor_json, indent = 4))
         subor.write(json.dumps(self.subor_json, indent = 4))
         subor.close()
-
-
-
-
-
-
 
 
 
@@ -80,9 +74,9 @@ class Root(tk.Tk):
         self.textBox = tk.Listbox(self, width = 50)
         self.textBox.grid(row = 4, columnspan = 4)
 
-        self.pridatButton = ttk.Button(self, text = "Pridať", command = lambda: Pridat())
+        self.pridatButton = ttk.Button(self, text = "Pridať", command = lambda: Pridat().focus())
         self.pridatButton.grid(row = 5, column = 1)
-        self.upravitButton = ttk.Button(self, text = "Upraviť", command = lambda: Upravit())
+        self.upravitButton = ttk.Button(self, text = "Upraviť", command = lambda: Upravit().focus())
         self.upravitButton.grid(row = 5, column = 3)
 
 #         # self.splneneLabel = tk.Label(self, text = "Splnené:").grid()
@@ -99,25 +93,12 @@ class Root(tk.Tk):
 #         # self.splnene1Checkbutton = tk.Checkbutton(self.textBox, text = "Splnené").grid()
 
 #         self.quitButton = ttk.Button(self, text = 'Quit', command = self.quit)#.grid(row = 5, column = 1)
-#         self.pridatButton = ttk.Button(self, text = "Pridať", command = self.pridat())
-#         self.upravitButton = ttk.Button(self, text = "Upraviť", command = self.upravit())
-
-
-#         self.zaznamLabel.grid(row = 0, column = 0)
-#         self.zaznamInput.grid(row = 0, column = 1)
-#         self.datumLabel.grid(row = 1, column = 0)
-#         self.datumInput.grid(row = 1, column = 1)
 #         # self.splneneLabel.grid()
 #         self.splneneCheckbutton.grid(row = 2, column = 1)
 #         self.windowBox.grid(row = 3, columnspan = 4)
 #         # self.listBox.grid()
 #         self.textBox.grid(row = 4, columnspan = 4)
 #         # self.splnene1Checkbutton.grid()
-
-#         self.quitButton.grid(row = 5, column = 1)
-#         self.pridatButton.grid(row = 1, column = 2)
-#         self.upravitButton.grid(row = 1, column = 3)
-
 
 
 class Pridat(tk.Toplevel):
@@ -129,11 +110,6 @@ class Pridat(tk.Toplevel):
 
     def window_pridat(self):
         """ okno pre formulár pre pridanie zápisu """
-            # zaznam = self.zaznamInput
-            # den = self.datumInput
-            # self.objekt_json.add_line(zaznam, den)
-            # # self.objekt_json._write()
-            # self.vypis()
         # pridať selekt/focus pre zadanie textu a možnosť entrovania (Zapísať)
         # window_pridat = tk.Toplevel()
         zaznamLabel = ttk.Label(self, text = "Záznam:")
@@ -151,6 +127,10 @@ class Pridat(tk.Toplevel):
             self.destroy()) # prečo treba zátvorky?
         )
         zatvoritButton.grid(row = 5, column = 1)
+
+        # self.objekt_json.add_line(zaznam, den)
+        # # self.objekt_json._write()
+        # self.vypis()
 
 
 class Upravit(tk.Toplevel):
@@ -174,12 +154,6 @@ class Upravit(tk.Toplevel):
 
 root = Root()
 root.objekt_json.reading()
-
-
-
-
-
-
 
 
 # objekt_json = JSON()
