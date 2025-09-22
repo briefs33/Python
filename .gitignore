@@ -2,3 +2,4 @@
 __pycache__/
 any/
 .gitignore
+metody_string.py
