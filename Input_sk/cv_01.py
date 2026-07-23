@@ -34,3 +34,4 @@ class Priklad_19:
                     print(f'{i * self.n + k + 1:2}', end=' ')
                 print(end='   ')
             print()
+        print()
