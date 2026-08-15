@@ -23,6 +23,48 @@ class Priklad_02:
         print(self.meno, 'bude mať o 10 rokov', self.vek + 10)
         print()
 
+class Priklad_03:
+    def __init__(self):
+        self.PI = 3.14159
+
+    def kruh(self):
+        self.polomer = float(input('Zadaj polomer: '))
+        
+        self.obvod = 2 * self.PI * self.polomer
+        self.obsah = self.PI * self.polomer ** 2
+
+        print('obvod je: ', self.obvod)
+        print('obsah je: ', self.obsah)
+        print()
+
+    def kocka(self):
+#        self.strana = float(input('Zadaj veľkosť strany kocky: '))
+
+#        self.stenova_uhlopriecka = ((self.strana ** 2) + (self.strana ** 2)) ** 1/2
+#        self.telesova_uhlopriecka = ((self.strana ** 2) + (self.strana ** 2)) ** 3/2
+
+#        print('obvod je: ', self.stenova_uhlopriecka)
+#        print('obsah je: ', self.telesova_uhlopriecka)
+        print()
+
+class Priklad_04:
+    def __init__(self):
+        self.text = input('Zadaj text: ')
+
+    def out(self):
+        for i in range(10):
+            print(self.text)
+        print()
+
+
+
+
+
+
+
+
+
+
 class Priklad_19:
     def __init__(self):
         self.n = int(input('zadaj n: '))
